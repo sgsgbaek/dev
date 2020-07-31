@@ -1,0 +1,26 @@
+1. Ansible 설치
+2. Boto 설치
+3. aws cli 설치(for aws configure)
+4. aws access key 발급
+5. $aws configure -> access key 입력
+6. ~/.boto 파일에 is_secure=false 추가(프록시 있는경우 해제하는 옵션)
+7. $ansible-playbook yml파일명 -vvv (로그출력)
+
+**playbook.yml**
+
+-name: ec2 creator
+ hosts: localhost
+ taskL
+   - name: create ec2
+     ec2:
+       instance_type: t2.micro
+       key_name: sgsgbaek_keypair
+       image: ami-version
+       region: us-west-2
+       group: default
+       count: 1
+       vpc_subnet_id: subnet-number
+       wait: yes
+       assign_public_ip: yes
+       instance_tags:{Name: instanceName}
+       
